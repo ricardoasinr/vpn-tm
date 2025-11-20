@@ -334,8 +334,17 @@ def show_menu():
                 curl_command = read_curl_file(selected_file)
                 
                 if curl_command:
-                    # Ejecutar el curl
-                    execute_curl(curl_command)
+                    # Obtener nombre del query (sin extensión)
+                    query_name = file_name.replace('.txt', '')
+                    
+                    # Ejecutar el curl con paginación y guardar resultados
+                    success = execute_curl(curl_command, query_name)
+                    
+                    if success:
+                        print(f"\n{'='*80}")
+                        print(f"✓ Proceso completado para {query_name}")
+                        print(f"Resultados guardados en: {RESULTS_DIR.absolute()}")
+                        print(f"{'='*80}")
                     
                     # Preguntar si quiere ejecutar otro
                     print("\n")
