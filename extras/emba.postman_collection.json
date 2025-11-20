@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "4468981d-ca75-4386-a799-16a61bac1488",
+		"name": "emba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38934600"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificar si la respuesta tiene un status 200 (éxito)",
+							"if (pm.response.code === 200) {",
+							"    // Obtener el cuerpo de la respuesta como JSON",
+							"    const responseData = pm.response.json();",
+							"",
+							"    // Extraer el token del cuerpo de la respuesta",
+							"    const token = responseData.token;  // Ajusta la clave según la estructura de tu respuesta",
+							"",
+							"    // Guardar el token en una variable de entorno",
+							"    pm.globals.set(\"jwt_token\", token);",
+							"",
+							"",
+							"    // Confirmación en la consola",
+							"    console.log(\"JWT token guardado en variable de entorno: \", token);",
+							"} else {",
+							"    console.log(\"Error al obtener el token\");",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "https://azure-function.timemanagerweb.com"
+					},
+					{
+						"key": "tenant-name",
+						"value": "{{tenant-name}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"{{user}}\",\n  \"password\": \"{{pass}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth_host}}",
+					"host": [
+						"{{auth_host}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dim_Usuarios",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "es-419,es;q=0.9"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:4200/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer {{jwt_token}}"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Linux\""
+					},
+					{
+						"key": "tenant-name",
+						"value": "{{tenant-name}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query Users($limit: Int, $page: Int, $searchTerm: String, $userTypes: [Int], $practiceAreas: [Int], $hideSuperAdmin: Boolean, $start_date: DateTime, $end_date: DateTime, $created: Boolean, $roles: [Int], $category: Int, $showDisabled: Boolean, $order_by: String, $order_dir: Boolean, $onlyDisabled: Boolean) {\n  Users(limit: $limit, page: $page, searchTerm: $searchTerm, userTypes: $userTypes, practiceAreas: $practiceAreas, hideSuperAdmin: $hideSuperAdmin, start_date: $start_date, end_date: $end_date, created: $created, roles: $roles, category: $category, showDisabled: $showDisabled, order_by: $order_by, order_dir: $order_dir, onlyDisabled: $onlyDisabled) {\n    meta {\n      total\n      page\n      pages\n      limit\n      hasPreviousPage\n      hasNextPage\n      previous\n      next\n    }\n    users {\n      id\n      username\n      fullName\n      shortName\n      userType\n      email\n      userRoles {\n        name\n      }\n      userCategory {\n        name\n      }\n      daysAllow\n      enabled\n    }\n  }\n}\n",
+						"variables": "{\n  \"page\": 1,\n  \"limit\": 100,\n  \"order_by\": null,\n  \"order_dir\": false\n}"
+					}
+				},
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8181/graphql/' \\\n--header 'Accept-Language: es-419,es;q=0.9' \\\n--header 'Cache-Control: no-cache' \\\n--header 'Connection: keep-alive' \\\n--header 'Origin: http://localhost:4200' \\\n--header 'Pragma: no-cache' \\\n--header 'Referer: http://localhost:4200/' \\\n--header 'Sec-Fetch-Dest: empty' \\\n--header 'Sec-Fetch-Mode: cors' \\\n--header 'Sec-Fetch-Site: same-site' \\\n--header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n--header 'accept: */*' \\\n--header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NjMxMjg3MDUsImV4cCI6MTc2MzIwODcwNSwiaWQiOjIsInVzZXJuYW1lIjoidG1tYXN0ZXIiLCJhcGlrZXkiOiI4NDIxMWU2NWM2NWNkN2NmZjQwNzAzNjA4MTgzZTMyYiIsImFwaWtleUNyZWF0ZWRBdCI6eyJkYXRlIjoiMjAyNS0wNy0wMSAxNDo1OTowOC4wMDAwMDAiLCJ0aW1lem9uZV90eXBlIjozLCJ0aW1lem9uZSI6IkFtZXJpY2EvQXN1bmNpb24ifSwiZnVsbE5hbWUiOiJUTSBNYXN0ZXIiLCJlbWFpbCI6IiIsImxvY2FsZSI6ImVzIiwiZGF5c0FsbG93ZWQiOjE1LCJpc0Nvb3JkaW5hdG9yIjpmYWxzZSwidHlwZVRhc2tWaWV3IjoibGlzdHMiLCJkYXlzYWxsb3ciOjE1LCJyb2xlcyI6e30sInNob3J0X25hbWUiOiJUTSIsImhvbWVwYWdlIjpudWxsfQ.PfyCAaohzZ35QnjsewhZ908E1OM20JEQX5npLNmhTJcqlKyc0sgmAMdlhGfoR7MrgWdtsiwqBBpmr6cSGdL6d0dAyNsTwxEw8ngMjQq8-YiKD2yNl2J_5vL335pHxcvjD_G3AbjCXZ6r9jDn4ELv7uKmBvbsKHwqG1LdiVK2MwhZ8NVhEaY5pNBFdhWtN9vgiJfEnqyd8kdgm5PISpg-y_1Ac-vcABm_ovQFSJk8UQ10ZMlFUMEfXcgaAgayHvSF-HTAkUud4A3pJAPdHHnMli58jTQ8iAT5OKTnByyaOafxlzvru0fDNX8siYda2cyaak04OBgKGuum8lHCed6P-ro8IVTsW7_tUVC3H6xjRI8-lG4e5W1IVxrBpC4VzQsqfPpGzxBuGb753xqQa9cvWEtYp6QfKxcUYa12gelUiab9DyxzM1h7cQUPiBe-exgKymhesOL-m1FzpwdKf3yUEuWDnxV4db0sWvBMjUGNPZNlE2aVse14hJkfAq0nvzzS08cmG-uZ9MoZgjrT2DwBIokAvbsIao2W8BasULNmN6kjxr60AoBogA0AVf9NFPhdfDNxCECFwWfMWvrdDI306ZzFkZR90F568XL8MbHGnG6xoZuqZBKUKfKn78f9sHSE7WMz10JNHMihv8iSe_AadRyCWV57y5-gVsNAMIcq2jk' \\\n--header 'content-type: application/json' \\\n--header 'sec-ch-ua: \"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'sec-ch-ua-platform: \"Linux\"' \\\n--header 'tenant-name: ferrere' \\\n--data '{\"query\":\"query Users($limit: Int, $page: Int, $searchTerm: String, $userTypes: [Int], $practiceAreas: [Int], $hideSuperAdmin: Boolean, $start_date: DateTime, $end_date: DateTime, $created: Boolean, $roles: [Int], $category: Int, $showDisabled: Boolean, $order_by: String, $order_dir: Boolean, $onlyDisabled: Boolean) {\\n  Users(limit: $limit, page: $page, searchTerm: $searchTerm, userTypes: $userTypes, practiceAreas: $practiceAreas, hideSuperAdmin: $hideSuperAdmin, start_date: $start_date, end_date: $end_date, created: $created, roles: $roles, category: $category, showDisabled: $showDisabled, order_by: $order_by, order_dir: $order_dir, onlyDisabled: $onlyDisabled) {\\n    meta {\\n      total\\n      page\\n      pages\\n      limit\\n      hasPreviousPage\\n      hasNextPage\\n      previous\\n      next\\n    }\\n    users {\\n      id\\n      username\\n      fullName\\n      shortName\\n      userType\\n      email\\n      userRoles {\\n        name\\n      }\\n      userCategory {\\n        name\\n      }\\n      daysAllow\\n      enabled\\n    }\\n  }\\n}\\n\",\"variables\":{\"page\":1,\"limit\":100,\"order_by\":null,\"order_dir\":false,\"userTypes\":[3,4]}}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Hechos_Tiempos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "es-419,es;q=0.9"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:4200/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer {{jwt_token}}"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Linux\""
+					},
+					{
+						"key": "tenant-name",
+						"value": "{{tenant-name}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query TimesByFiltersPaged($users: [Int], $customers: [Int], $businesses: [Int], $status: [String], $billiable: Boolean, $date_from: DateTime, $date_to: DateTime, $order_by: String, $order_dir: Boolean, $page: Int, $max_per_page: Int, $access: IndicatorAccess, $contacts: [Int]) {\n  TimesByFiltersPaged(users: $users, customers: $customers, businesses: $businesses, status: $status, billiable: $billiable, date_from: $date_from, date_to: $date_to, order_by: $order_by, order_dir: $order_dir, page: $page, max_per_page: $max_per_page, access: $access, contacts: $contacts) {\n    total\n    num_pages\n    has_previous_page\n    has_next_page\n    current_page\n    previous_page\n    next_page\n    times {\n      id\n      date\n      user {\n        id\n        shortName\n        fullName\n      }\n      business {\n        id\n        displayName\n        currency {\n          id\n          shortName\n        }\n        businessDescription {\n          description\n        }\n        customer {\n          id\n          name\n          trade_name\n          color\n          displayName\n        }\n        procedureRate {\n          id\n          name\n          year\n          status\n        }\n      }\n      procedureTransaction {\n        id\n        status\n        procedure_rate_detail {\n          id\n          procedureRate {\n            id\n            name\n            year\n            status\n          }\n          name\n          description\n          rate\n          currency {\n            id\n            shortName\n            exchangeRate\n            status\n          }\n          procedureExpenses\n          expensesCurrency {\n            id\n          }\n          procedureExpensesBilling\n          expensesBillingCurrency {\n            id\n            shortName\n            exchangeRate\n            status\n          }\n        }\n      }\n      minutes\n      startTime\n      endTime\n      billableMinutes\n      detail\n      office_id\n      status {\n        id\n        name\n      }\n      statusMarking\n      workflow_status {\n        id\n        name\n      }\n      task {\n        id\n      }\n      activity {\n        id\n        spanishDescription\n      }\n      practice_area {\n        id\n        name\n      }\n      billable\n      milestone {\n        id\n        name\n      }\n      shared\n      customer_classification {\n        id\n        name\n      }\n    }\n  }\n}\n",
+						"variables": "{\n  \"access\": \"ALL\",\n  \"customers\": [],\n  \"businesses\": [],\n  \"contacts\": [],\n  \"status\": null,\n  \"billiable\": null,\n  \"date_from\": null,\n  \"date_to\": null,\n  \"max_per_page\": 15,\n  \"page\": 1,\n  \"order_by\": \"date\",\n  \"order_dir\": true,\n  \"users\": []\n}"
+					}
+				},
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8181/graphql/' \\\n--header 'Accept-Language: es-419,es;q=0.9' \\\n--header 'Cache-Control: no-cache' \\\n--header 'Connection: keep-alive' \\\n--header 'Origin: http://localhost:4200' \\\n--header 'Pragma: no-cache' \\\n--header 'Referer: http://localhost:4200/' \\\n--header 'Sec-Fetch-Dest: empty' \\\n--header 'Sec-Fetch-Mode: cors' \\\n--header 'Sec-Fetch-Site: same-site' \\\n--header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n--header 'accept: */*' \\\n--header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NjMxMjg3MDUsImV4cCI6MTc2MzIwODcwNSwiaWQiOjIsInVzZXJuYW1lIjoidG1tYXN0ZXIiLCJhcGlrZXkiOiI4NDIxMWU2NWM2NWNkN2NmZjQwNzAzNjA4MTgzZTMyYiIsImFwaWtleUNyZWF0ZWRBdCI6eyJkYXRlIjoiMjAyNS0wNy0wMSAxNDo1OTowOC4wMDAwMDAiLCJ0aW1lem9uZV90eXBlIjozLCJ0aW1lem9uZSI6IkFtZXJpY2EvQXN1bmNpb24ifSwiZnVsbE5hbWUiOiJUTSBNYXN0ZXIiLCJlbWFpbCI6IiIsImxvY2FsZSI6ImVzIiwiZGF5c0FsbG93ZWQiOjE1LCJpc0Nvb3JkaW5hdG9yIjpmYWxzZSwidHlwZVRhc2tWaWV3IjoibGlzdHMiLCJkYXlzYWxsb3ciOjE1LCJyb2xlcyI6e30sInNob3J0X25hbWUiOiJUTSIsImhvbWVwYWdlIjpudWxsfQ.PfyCAaohzZ35QnjsewhZ908E1OM20JEQX5npLNmhTJcqlKyc0sgmAMdlhGfoR7MrgWdtsiwqBBpmr6cSGdL6d0dAyNsTwxEw8ngMjQq8-YiKD2yNl2J_5vL335pHxcvjD_G3AbjCXZ6r9jDn4ELv7uKmBvbsKHwqG1LdiVK2MwhZ8NVhEaY5pNBFdhWtN9vgiJfEnqyd8kdgm5PISpg-y_1Ac-vcABm_ovQFSJk8UQ10ZMlFUMEfXcgaAgayHvSF-HTAkUud4A3pJAPdHHnMli58jTQ8iAT5OKTnByyaOafxlzvru0fDNX8siYda2cyaak04OBgKGuum8lHCed6P-ro8IVTsW7_tUVC3H6xjRI8-lG4e5W1IVxrBpC4VzQsqfPpGzxBuGb753xqQa9cvWEtYp6QfKxcUYa12gelUiab9DyxzM1h7cQUPiBe-exgKymhesOL-m1FzpwdKf3yUEuWDnxV4db0sWvBMjUGNPZNlE2aVse14hJkfAq0nvzzS08cmG-uZ9MoZgjrT2DwBIokAvbsIao2W8BasULNmN6kjxr60AoBogA0AVf9NFPhdfDNxCECFwWfMWvrdDI306ZzFkZR90F568XL8MbHGnG6xoZuqZBKUKfKn78f9sHSE7WMz10JNHMihv8iSe_AadRyCWV57y5-gVsNAMIcq2jk' \\\n--header 'content-type: application/json' \\\n--header 'sec-ch-ua: \"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'sec-ch-ua-platform: \"Linux\"' \\\n--header 'tenant-name: ferrere' \\\n--data '{\"query\":\"query TimesByFiltersPaged($users: [Int], $customers: [Int], $businesses: [Int], $status: [String], $billiable: Boolean, $date_from: DateTime, $date_to: DateTime, $order_by: String, $order_dir: Boolean, $page: Int, $max_per_page: Int, $access: IndicatorAccess, $contacts: [Int]) {\\n  TimesByFiltersPaged(users: $users, customers: $customers, businesses: $businesses, status: $status, billiable: $billiable, date_from: $date_from, date_to: $date_to, order_by: $order_by, order_dir: $order_dir, page: $page, max_per_page: $max_per_page, access: $access, contacts: $contacts) {\\n    total\\n    num_pages\\n    has_previous_page\\n    has_next_page\\n    current_page\\n    previous_page\\n    next_page\\n    times {\\n      id\\n      date\\n      user {\\n        id\\n        shortName\\n        fullName\\n      }\\n      business {\\n        id\\n        displayName\\n        currency {\\n          id\\n          shortName\\n        }\\n        businessDescription {\\n          description\\n        }\\n        customer {\\n          id\\n          name\\n          trade_name\\n          color\\n          displayName\\n        }\\n        procedureRate {\\n          id\\n          name\\n          year\\n          status\\n        }\\n      }\\n      procedureTransaction {\\n        id\\n        status\\n        procedure_rate_detail {\\n          id\\n          procedureRate {\\n            id\\n            name\\n            year\\n            status\\n          }\\n          name\\n          description\\n          rate\\n          currency {\\n            id\\n            shortName\\n            exchangeRate\\n            status\\n          }\\n          procedureExpenses\\n          expensesCurrency {\\n            id\\n          }\\n          procedureExpensesBilling\\n          expensesBillingCurrency {\\n            id\\n            shortName\\n            exchangeRate\\n            status\\n          }\\n        }\\n      }\\n      minutes\\n      startTime\\n      endTime\\n      billableMinutes\\n      detail\\n      office_id\\n      status {\\n        id\\n        name\\n      }\\n      statusMarking\\n      workflow_status {\\n        id\\n        name\\n      }\\n      task {\\n        id\\n      }\\n      activity {\\n        id\\n        spanishDescription\\n      }\\n      practice_area {\\n        id\\n        name\\n      }\\n      billable\\n      milestone {\\n        id\\n        name\\n      }\\n      shared\\n      customer_classification {\\n        id\\n        name\\n      }\\n    }\\n  }\\n}\\n\",\"variables\":{\"access\":\"ALL\",\"customers\":[],\"businesses\":[],\"contacts\":[],\"status\":null,\"billiable\":null,\"date_from\":null,\"date_to\":null,\"max_per_page\":1000,\"page\":1,\"order_by\":\"date\",\"order_dir\":true,\"users\":[]}}'\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Dim_Asunto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "es-419,es;q=0.9"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:4200/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer {{jwt_token}}"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Linux\""
+					},
+					{
+						"key": "tenant-name",
+						"value": "{{tenant-name}}"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query BusinessMeta($page: Int, $limit: Int, $searchTerm: String, $customers: [Int], $enabled: [Int], $orderBy: String, $orderDesc: Boolean, $enterpriseGroup: [Int], $practiceAreas: [Int], $billingModes: [Int], $billingGroups: [Int], $contactCounterParty: [Int], $status: [String], $billable: Boolean, $skipNoMilestoneBusiness: Boolean, $startCreationAt: DateTime, $endCreationAt: DateTime, $bpmStatus: [String], $expiration: String, $board: Int, $assigned: Boolean, $assignedUser: [Int], $assignedRole: [Int], $currency: Int, $billableItemStatus: [String], $hasTimes: Boolean, $dateFrom: DateTime, $dateTo: DateTime) {\n  BusinessMeta(page: $page, limit: $limit, searchTerm: $searchTerm, customers: $customers, enabled: $enabled, orderBy: $orderBy, orderDesc: $orderDesc, enterpriseGroup: $enterpriseGroup, practiceAreas: $practiceAreas, billingModes: $billingModes, billingGroups: $billingGroups, contactCounterParty: $contactCounterParty, status: $status, billable: $billable, skipNoMilestoneBusiness: $skipNoMilestoneBusiness, startCreationAt: $startCreationAt, endCreationAt: $endCreationAt, bpmStatus: $bpmStatus, expiration: $expiration, board: $board, assigned: $assigned, assignedUser: $assignedUser, assignedRole: $assignedRole, currency: $currency, billableItemStatus: $billableItemStatus, hasTimes: $hasTimes, dateFrom: $dateFrom, dateTo: $dateTo) {\n    meta {\n      total\n      page\n      pages\n      limit\n      hasPreviousPage\n      hasNextPage\n      previous\n      next\n    }\n    rows {\n      id\n      displayName\n      isBillable\n      businessDescription {\n        id\n        description\n      }\n      customer {\n        id\n        name\n        trade_name\n        displayName\n        customer_classification {\n          id\n          name\n        }\n      }\n      practiceArea {\n        id\n        name\n      }\n      billingMode {\n        id\n        description\n      }\n      milestones {\n        id\n        name\n      }\n      secondaryExternalCode\n      hourLimit\n      limitAlert\n      currency {\n        id\n        shortName\n      }\n      billingCurrency {\n        id\n        shortName\n      }\n      status\n      statusMarking\n      bpmStatus {\n        id\n        label\n      }\n      bpmResponsible {\n        id\n        fullName\n      }\n      finishedDate\n      estimatedFinishDate\n      riskStatus\n      created_at\n      fix_rate_value\n      expedient\n      primary_external_code\n      monthlyFixRateGroup {\n        id\n        name\n        hour_limit\n        rate\n      }\n      notes\n      milestonesTotal\n    }\n  }\n}\n",
+						"variables": "{\n  \"enabled\": [\n    1,\n    0\n  ],\n  \"page\": 1,\n  \"limit\": 100,\n  \"orderBy\": \"\",\n  \"orderDesc\": false\n}"
+					}
+				},
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8181/graphql/' \\\n--header 'Accept-Language: es-419,es;q=0.9' \\\n--header 'Cache-Control: no-cache' \\\n--header 'Connection: keep-alive' \\\n--header 'Origin: http://localhost:4200' \\\n--header 'Pragma: no-cache' \\\n--header 'Referer: http://localhost:4200/' \\\n--header 'Sec-Fetch-Dest: empty' \\\n--header 'Sec-Fetch-Mode: cors' \\\n--header 'Sec-Fetch-Site: same-site' \\\n--header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n--header 'accept: */*' \\\n--header 'authorization: Bearer {{token}}' \\\n--header 'content-type: application/json' \\\n--header 'sec-ch-ua: \"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'sec-ch-ua-platform: \"Linux\"' \\\n--header 'tenant-name: ferrere' \\\n--data '{\"query\":\"query BusinessMeta($page: Int, $limit: Int, $searchTerm: String, $customers: [Int], $enabled: [Int], $orderBy: String, $orderDesc: Boolean, $enterpriseGroup: [Int], $practiceAreas: [Int], $billingModes: [Int], $billingGroups: [Int], $contactCounterParty: [Int], $status: [String], $billable: Boolean, $skipNoMilestoneBusiness: Boolean, $startCreationAt: DateTime, $endCreationAt: DateTime, $bpmStatus: [String], $expiration: String, $board: Int, $assigned: Boolean, $assignedUser: [Int], $assignedRole: [Int], $currency: Int, $billableItemStatus: [String], $hasTimes: Boolean, $dateFrom: DateTime, $dateTo: DateTime) {\\n  BusinessMeta(page: $page, limit: $limit, searchTerm: $searchTerm, customers: $customers, enabled: $enabled, orderBy: $orderBy, orderDesc: $orderDesc, enterpriseGroup: $enterpriseGroup, practiceAreas: $practiceAreas, billingModes: $billingModes, billingGroups: $billingGroups, contactCounterParty: $contactCounterParty, status: $status, billable: $billable, skipNoMilestoneBusiness: $skipNoMilestoneBusiness, startCreationAt: $startCreationAt, endCreationAt: $endCreationAt, bpmStatus: $bpmStatus, expiration: $expiration, board: $board, assigned: $assigned, assignedUser: $assignedUser, assignedRole: $assignedRole, currency: $currency, billableItemStatus: $billableItemStatus, hasTimes: $hasTimes, dateFrom: $dateFrom, dateTo: $dateTo) {\\n    meta {\\n      total\\n      page\\n      pages\\n      limit\\n      hasPreviousPage\\n      hasNextPage\\n      previous\\n      next\\n    }\\n    rows {\\n      id\\n      displayName\\n      isBillable\\n      businessDescription {\\n        id\\n        description\\n      }\\n      customer {\\n        id\\n        name\\n        trade_name\\n        displayName\\n        customer_classification {\\n          id\\n          name\\n        }\\n      }\\n      practiceArea {\\n        id\\n        name\\n      }\\n      billingMode {\\n        id\\n        description\\n      }\\n      milestones {\\n        id\\n        name\\n      }\\n      secondaryExternalCode\\n      hourLimit\\n      limitAlert\\n      currency {\\n        id\\n        shortName\\n      }\\n      billingCurrency {\\n        id\\n        shortName\\n      }\\n      status\\n      statusMarking\\n      bpmStatus {\\n        id\\n        label\\n      }\\n      bpmResponsible {\\n        id\\n        fullName\\n      }\\n      finishedDate\\n      estimatedFinishDate\\n      riskStatus\\n      created_at\\n      fix_rate_value\\n      expedient\\n      primary_external_code\\n      monthlyFixRateGroup {\\n        id\\n        name\\n        hour_limit\\n        rate\\n      }\\n      notes\\n      milestonesTotal\\n    }\\n  }\\n}\\n\",\"variables\":{\"enabled\":[1,0],\"page\":1,\"limit\":100,\"orderBy\":\"\",\"orderDesc\":false}}'"
+			},
+			"response": []
+		}
+	]
+}

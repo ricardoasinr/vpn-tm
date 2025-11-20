@@ -1,0 +1,99 @@
+id,Nombre,Estado,Categoria,Email,CI
+5,Andrés Moreno,Activo,Socio,amorenog@emba.com.bo,3360145
+6,Daniel Arredondo,Activo,Socio,darredondo@emba.com.bo,3592891
+7,Delfor Zapata Avendaño,Inactivo,Socio,dzapata@emba.com.bo,2703496
+8,Luis Moreno,Activo,Socio,lmorenog@emba.com.bo,3360143
+9,Paul Aramayo,Activo,Socio,paramayo@emba.com.bo,3390066
+10,René Claure,Activo,Socio,rclaure@emba.com.bo,6097969
+11,René Cuellar,Activo,Socio,rcuellar@emba.com.bo,5846325
+12,Teddy Mercado,Activo,Socio,tmercado@emba.com.bo,3476187
+13,Cristhian Delgado,Activo,Gerente,cdelgado@emba.com.bo,3429685
+14,Carlos Merino,Activo,Director,cmerino@emba.com.bo,958825
+15,Natalio Zegarra,Activo,Director,nezegarra@emba.com.bo,4262078
+16,Rodrigo Burgos,Inactivo,Director,rburgos@emba.com.bo,3354258
+17,Álvaro Araoz,Activo,Asociado Senior,aaraoz@emba.com.bo,3140982
+18,Fernando Landa,Activo,Asociado Senior,flanda@emba.com.bo,6191498
+19,Ines Ayala,Activo,Asociado Senior,iayala@emba.com.bo,6314432
+20,Juan Pablo Zegada,Inactivo,Asociado Senior,jpzegada@emba.com.bo,3519169
+21,Moisés Blanco,Activo,Asociado Senior,mblanco@emba.com.bo,5969208
+22,Wilfredo Rojo,Inactivo,Asociado Senior,wrojo@emba.com.bo,4704329
+23,Fernando Sanchez Peña,Activo,Asociado Senior,fsanchez@emba.com.bo,4330518
+24,Vladimir Hurtado,Inactivo,Asociado Senior,vhurtado@emba.com.bo,1117458
+25,André Tejerina,Activo,Asociado Senior,atejerina@emba.com.bo,3485460
+26,Ariel Triveño,Activo,Asociado,arielt@emba.com.bo,4380863
+27,Ariel Zeballos,Activo,Asociado Senior,azeballos@emba.com.bo,6961729
+28,Carla Paz,Inactivo,Asociado,cpaz@emba.com.bo,9664256
+29,David Cuellar,Activo,Asociado,dcuellarf@emba.com.bo,3917714
+30,Fernanda Veremeenco,Inactivo,Asociado,fveremeenco@emba.com.bo,5852643
+31,Grissel Argote,Activo,Gerente,gargote@emba.com.bo,4919896
+32,Gabriela Morales,Inactivo,Gerente,gmorales@emba.com.bo,7921453
+33,Juan Pablo Cruz,Activo,Asociado,jcruz@emba.com.bo,5785689
+34,Juan Diego Cuellar,Activo,Asociado,dcuellar@emba.com.bo,5722065
+35,José María Navarro,Activo,Asociado Senior,jnavarro@emba.com.bo,6728107
+36,Keiko Catacora,Inactivo,Asociado,kcatacora@emba.com.bo,6146790
+37,Liliana Bonilla,Activo,Asociado,lbonilla@emba.com.bo,7852467
+38,Lilian Rodríguez,Activo,Asociado,lrodriguez@emba.com.bo,6103057
+39,Magaly Condori,Activo,Asociado,mcondori@emba.com.bo,8247356
+40,Miguel Quezada,Activo,Asociado,mquezada@emba.com.bo,4904032
+41,Noelia Sanjinés,Activo,Asociado Senior,nsanjines@emba.com.bo,4863074
+42,Pamela Minaya,Activo,Asociado,pminaya@emba.com.bo,8288447
+43,Pamela Muñoz,Activo,Asociado Senior,pmunoz@emba.com.bo,6169707
+44,Ruth Canaza,Activo,Asociado,rcanaza@emba.com.bo,11305134
+45,Rafaela Mondacca,Activo,Asociado,rmondacca@emba.com.bo,5971343
+46,Rosalía Soliz,Activo,Asociado,rsoliz@emba.com.bo,6709036
+47,Santiago Adriazola,Activo,Asociado,sadriazola@emba.com.bo,6489747
+48,Sebastian Aguilera,Activo,Asociado,saguilera@emba.com.bo,9032202
+49,Santiago Gantier,Inactivo,Asociado,sgantier@emba.com.bo,5349565
+50,María Teresa Carrasco,Activo,Asociado,tcarrasco@emba.com.bo,6095811
+51,Ana Luz Loayza,Inactivo,Asociado,aloayza@emba.com.bo,12436830
+52,Diana Villarroel,Activo,Asociado,dvillarroel@emba.com.bo,6488841
+53,Melvin Quisbert,Activo,Asociado,mquisbert@emba.com.bo,7682452
+54,Luis Gutierrez,Inactivo,Asociado,lgutierrez@emba.com.bo,3844516
+55,Gregorio Huaranca,Inactivo,Asociado,ghuaranca@emba.com.bo,4826438
+56,Samara Turdera,Inactivo,Asociado,sturdera@emba.com.bo,7526820
+57,Wilber Vargas,Inactivo,Asociado,wvargas@emba.com.bo,7479442
+58,Marco Suarez,Activo,Asociado,msuarez@emba.com.bo,4105903
+59,Jorge Castro,Activo,Procurador,jcastro.emba@gmail.com,8212813
+60,Hector Colque,Inactivo,Paralegal,hcolque@emba.com.bo,10410341
+61,Katherine Gutierrez,Activo,Analista,kgutierrez@emba.com.bo,8364311
+62,Valeria Flores,Activo,Analista,vflores@emba.com.bo,7537051
+63,Carolina Gonzales,Activo,Analista,cgonzales@emba.com.bo,9878362
+64,Maria Eugenia Videz,Activo,Analista,mvidez@emba.com.bo,6004007
+65,Mikael Calatayud,Activo,Analista,mcalatayud@emba.com.bo,9898028
+66,Daniela Barrios,Activo,Analista,dbarrios@emba.com.bo,8333661
+68,Limbert Alfredo Chalco Herrera,Inactivo,,lchalco@emba.com.bo,4275059
+72,Ramiro Moreno Baldivieso,Inactivo,Encargado,Prueba@prueba.com,
+74,Victoria Moreno,Inactivo,Paralegal,vmoreno@emba.com.bo,8197182
+75,Camila Kaegui,Activo,Asociado,ckaegui@emba.com.bo,6778280
+78,Erick Fuentes,Activo,Asociado,efuentes@emba.com.bo,13129612
+79,Andres Pardo,Activo,Asociado,apardo@emba.com.bo,6424451
+80,Carlos Quispe,Activo,Asociado,cquispe@emba.com.bo,9172980
+82,David Antelo,Activo,Analista,dantelo@emba.com.bo,8984227
+83,Gabriela Kenta,Activo,Asociado,gkenta@emba.com.bo,6189016
+84,Andrea Gomez,Activo,Analista,agomez@timemanagerweb.com,
+85,Juan Pablo Tarradelles,Activo,Asociado,jtarradelles@emba.com.bo,6295370
+87,Valeria Roca,Activo,Asociado,vroca@emba.com.bo,5391310
+88,Luis Valda,Activo,Director,lvalda@emba.com.bo,3481004
+89,Soporte_TM,Activo,Asociado Senior,tm.comunicacion@emba.com.bo,123456789
+90,Fabian Roca,Activo,Paralegal,froca@emba.com.bo,8128669
+91,Lucia Lazarte,Activo,Paralegal,llazarte@emba.com.bo,6841811
+92,Alejandra López,Activo,Asociado Senior,alopez@emba.com.bo,7753772
+95,Alexandra Moscoso,Activo,Asociado,amoscoso@emba.com.bo,9581747
+96,Clara Sánchez,Activo,Asociado,csanchez@emba.com.bo,5967902
+97,Andrés Peredo,Activo,Analista,aperedo@emba.com.bo,8905823
+100,Juan s,Inactivo,Analista,juansinani@emba.com.bo,
+101,Juan José Siñani,Inactivo,Analista,jsinani@emba.com.bo,
+102,Mauricio Aguirre,Activo,Asociado Senior,maguirre@emba.com.bo,
+103,Claudia Maturana,Activo,Asociado Senior,cmaturana@emba.com.bo,
+104,Carla Valdivia,Activo,Asociado,cvaldivia@emba.com.bo,
+105,Guillermo Alba,Activo,Asociado,galba@emba.com.bo,
+107,Eunice Padilla,Activo,Analista,epadilla@emba.com.bo,
+108,Marco Altamirano,Activo,Analista,maltamirano@emba.com.bo,
+109,Gabriel Claros,Activo,Analista,gclaros@emba.com.bo,
+110,Laura Rivas,Activo,Asociado,lrivas@emba.com.bo,
+111,Daniel Arduz,Activo,Asociado,darduz@emba.com.bo,
+112,Aye Roca,Inactivo,Analista,aroca.emba@gmail.com,
+113,Ariel Arancibia,Activo,Analista,aarancibia@emba.com.bo,
+115,María Fernanda Cuellar Rambalde,Activo,Paralegal,fcuellar@emba.com.bo,
+116,María Fernanda Cuellar Salvatierra,Activo,Paralegal,mcuellar@emba.com.bo,
+117,Nayeli Villca,Activo,Analista,outsourcing@emba.com.bo,

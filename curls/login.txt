@@ -1,0 +1,8 @@
+curl --location 'https://apinewtm.com/api/auth/token' \
+--header 'tenant-name: emba' \
+--header 'Origin: https://azure-function.timemanagerweb.com' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "username":"hmarquez@emba.com.bo",
+  "password": "mv-4XdPtzHEu"
+}'

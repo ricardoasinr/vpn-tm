@@ -1,0 +1,20 @@
+curl --location 'https://apinewtm.com/graphql/' \
+--header 'Accept-Language: es-419,es;q=0.9' \
+--header 'Cache-Control: no-cache' \
+--header 'Connection: keep-alive' \
+--header 'Origin: http://localhost:4200' \
+--header 'Pragma: no-cache' \
+--header 'Referer: http://localhost:4200/' \
+--header 'Sec-Fetch-Dest: empty' \
+--header 'Sec-Fetch-Mode: cors' \
+--header 'Sec-Fetch-Site: same-site' \
+--header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \
+--header 'accept: */*' \
+--header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NjM2MDUyMjMsImV4cCI6MTc2MzY4NTIyMywiaWQiOjcwLCJ1c2VybmFtZSI6ImhtYXJxdWV6QGVtYmEuY29tLmJvIiwiYXBpa2V5IjoiMzhkNWY1MzZiMjBkZjExNzM3YjQ4ZDczMjM0OWQyMWQiLCJhcGlrZXlDcmVhdGVkQXQiOnsiZGF0ZSI6IjIwMjUtMTAtMjEgMTQ6Mjc6NDcuMDAwMDAwIiwidGltZXpvbmVfdHlwZSI6MywidGltZXpvbmUiOiJBbWVyaWNhL0JvZ290YSJ9LCJmdWxsTmFtZSI6Ikh1YmVydCBNYXJxdWV6IiwiZW1haWwiOiJobWFycXVlekBlbWJhLmNvbS5ibyIsImxvY2FsZSI6ImVzIiwiZGF5c0FsbG93ZWQiOjMwMiwiaXNDb29yZGluYXRvciI6ZmFsc2UsInR5cGVUYXNrVmlldyI6Imxpc3RzIiwiZGF5c2FsbG93IjozMDIsInJvbGVzIjp7fSwic2hvcnRfbmFtZSI6ImhtYXJxdWV6IiwiaG9tZXBhZ2UiOm51bGx9.pADJkXtVvBLE-Ym9c8IaibgHkLWhxvIBxalQgDWIb4AXUGALh6RUSeq7qVhcvMJYeOqX6qPFEKUHAlQ_ugtHAgbLjtw9HHa3QPo8N8sAc46s1WxQ87e5R8I594fXlDxU2iWezaKF5dQnK96AMlJKlmVDiYteqL_DwgixJ43_oWIjfcjExLgrKAWXU8FED3yEEzyXq7gdzLL0QYhg0E4J66V0lGm2fSGHX4LMluHu56If7oB9zkus7rLxe84CHopKpsbpiLVOR_rPuDA8RKGIIXM2ilkf8KsvYe7EG10Yc7TXzF19fD6OqdH1ozGa0cuiuIat82IKp51KgTgOkRfw0w' \
+--header 'content-type: application/json' \
+--header 'sec-ch-ua: "Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"' \
+--header 'sec-ch-ua-mobile: ?0' \
+--header 'sec-ch-ua-platform: "Linux"' \
+--header 'tenant-name: emba' \
+--header 'Origin: https://azure-function.timemanagerweb.com' \
+--data '{"query":"query Users($limit: Int, $page: Int, $searchTerm: String, $userTypes: [Int], $practiceAreas: [Int], $hideSuperAdmin: Boolean, $start_date: DateTime, $end_date: DateTime, $created: Boolean, $roles: [Int], $category: Int, $showDisabled: Boolean, $order_by: String, $order_dir: Boolean, $onlyDisabled: Boolean) {\n  Users(limit: $limit, page: $page, searchTerm: $searchTerm, userTypes: $userTypes, practiceAreas: $practiceAreas, hideSuperAdmin: $hideSuperAdmin, start_date: $start_date, end_date: $end_date, created: $created, roles: $roles, category: $category, showDisabled: $showDisabled, order_by: $order_by, order_dir: $order_dir, onlyDisabled: $onlyDisabled) {\n    meta {\n      total\n      page\n      pages\n      limit\n      hasPreviousPage\n      hasNextPage\n      previous\n      next\n    }\n    users {\n      id\n      username\n      fullName\n      shortName\n      userType\n      email\n   userCategory {\n        name\n      }\n      daysAllow\n      enabled\n    }\n  }\n}\n","variables":{"page":1,"limit":100,"order_by":null,"order_dir":false}}'
