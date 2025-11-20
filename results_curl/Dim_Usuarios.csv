@@ -1,0 +1,91 @@
+daysAllow,email,enabled,fullName,id,shortName,userCategory,userCategory_name,userType,username
+302,alopez@emba.com.bo,True,Alejandra López,92,alopez,,Asociado Senior,1,alopez@emba.com.bo
+302,amoscoso@emba.com.bo,True,Alexandra Moscoso,95,amoscoso,,Asociado,1,amoscoso@emba.com.bo
+302,aaraoz@emba.com.bo,True,Álvaro Araoz,17,aaraoz,,Asociado Senior,1,aaraoz@emba.com.bo
+302,pcorredor@timemanagerweb.com,True,AM TM,77,AM,,,4,pcorredor@timemanagerweb.com
+302,atejerina@emba.com.bo,True,André Tejerina,25,atejerin,,Asociado Senior,1,atejerina@emba.com.bo
+302,agomez@timemanagerweb.com,True,Andrea Gomez,84,AG,,Analista,3,agomez@timemanagerweb.com
+302,amorenog@emba.com.bo,True,Andrés Moreno,5,amoreno,,Socio,1,amorenog@emba.com.bo
+302,apardo@emba.com.bo,True,Andres Pardo,79,apardo,,Asociado,1,apardo@emba.com.bo
+302,aperedo@emba.com.bo,True,Andrés Peredo,97,aperedo,,Analista,1,aperedo@emba.com.bo
+302,aarancibia@emba.com.bo,True,Ariel Arancibia,113,aarancibia,,Analista,1,aarancibia@emba.com.bo
+302,arielt@emba.com.bo,True,Ariel Triveño,26,atriveño,,Asociado,1,arielt@emba.com.bo
+302,azeballos@emba.com.bo,True,Ariel Zeballos,27,azeballo,,Asociado Senior,1,azeballos@emba.com.bo
+302,ckaegui@emba.com.bo,True,Camila Kaegui,75,ckaegui,,Asociado,1,ckaegui@emba.com.bo
+302,cvaldivia@emba.com.bo,True,Carla Valdivia,104,cvaldivi,,Asociado,1,cvaldivia@emba.com.bo
+302,cmerino@emba.com.bo,True,Carlos Merino,14,cmerino,,Director,1,cmerino@emba.com.bo
+302,cquispe@emba.com.bo,True,Carlos Quispe,80,cquispe,,Asociado,1,cquispe@emba.com.bo
+302,cescobar@emba.com.bo,True,Carmen Escobar,69,cescobar,,,0,cescobar@emba.com.bo
+302,cgonzales@emba.com.bo,True,Carolina Gonzales,63,cgonzale,,Analista,1,cgonzales@emba.com.bo
+360,csanchez@emba.com.bo,True,Clara Sánchez,96,csanchez,,Asociado,1,csanchez@emba.com.bo
+302,cmaturana@emba.com.bo,True,Claudia Maturana,103,cmaturan,,Asociado Senior,1,cmaturana@emba.com.bo
+302,cdelgado@emba.com.bo,True,Cristhian Delgado,13,cdelgado,,Gerente,1,cdelgado@emba.com.bo
+302,darduz@emba.com.bo,True,Daniel Arduz,111,darduz,,Asociado,1,darduz@emba.com.bo
+302,darredondo@emba.com.bo,True,Daniel Arredondo,6,darredon,,Socio,1,darredondo@emba.com.bo
+302,dbarrios@emba.com.bo,True,Daniela Barrios,66,dbarrios,,Analista,1,dbarrios@emba.com.bo
+302,dantelo@emba.com.bo,True,David Antelo,82,dantelo,,Analista,1,dantelo@emba.com.bo
+302,dcuellarf@emba.com.bo,True,David Cuellar,29,dcuellar,,Asociado,1,dcuellarf@emba.com.bo
+302,dvillarroel@emba.com.bo,True,Diana Villarroel,52,dvillarr,,Asociado,1,dvillarroel@emba.com.bo
+302,efuentes@emba.com.bo,True,Erick Fuentes,78,efuentes,,Asociado,1,efuentes@emba.com.bo
+302,epadilla@emba.com.bo,True,Eunice Padilla,107,epadilla,,Analista,1,epadilla@emba.com.bo
+302,froca@emba.com.bo,True,Fabian Roca,90,froca,,Paralegal,1,froca@emba.com.bo
+302,dayana@timemanagerweb.com,True,Facturacion TM,81,FTTM,,,4,FacturacionTM
+302,flanda@emba.com.bo,True,Fernando Landa,18,flanda,,Asociado Senior,1,flanda@emba.com.bo
+302,fsanchez@emba.com.bo,True,Fernando Sanchez Peña,23,fsanchez,,Asociado Senior,1,fsanchez@emba.com.bo
+302,gclaros@emba.com.bo,True,Gabriel Claros,109,gclaros,,Analista,1,gclaros@emba.com.bo
+302,gkenta@emba.com.bo,True,Gabriela Kenta,83,gkenta,,Asociado,1,gkenta@emba.com.bo
+302,gmancilla@emba.com.bo,True,Gabriela Mancilla Luna,99,gmancill,,,0,gmancilla@emba.com.bo
+302,gargote@emba.com.bo,True,Grissel Argote,31,gargote,,Gerente,1,gargote@emba.com.bo
+302,galba@emba.com.bo,True,Guillermo Alba,105,galba,,Asociado,1,galba@emba.com.bo
+302,hmarquez@emba.com.bo,True,Hubert Marquez,70,hmarquez,,,4,hmarquez@emba.com.bo
+302,iayala@emba.com.bo,True,Ines Ayala,19,iayala,,Asociado Senior,1,iayala@emba.com.bo
+15,,True,Integracion SAP,86,TM,,,4,integracion_sap
+302,jcatari@emba.com.bo,True,Jhonatan Catari,106,jcatari,,Asociado,0,jcatari@emba.com.bo
+302,jcastro.emba@gmail.com,True,Jorge Castro,59,jcastro,,Procurador,1,jcastro.emba@gmail.com
+302,jnavarro@emba.com.bo,True,José María Navarro,35,jmnavarr,,Asociado Senior,1,jnavarro@emba.com.bo
+302,dcuellar@emba.com.bo,True,Juan Diego Cuellar,34,jcuellar,,Asociado,1,dcuellar@emba.com.bo
+302,jcruz@emba.com.bo,True,Juan Pablo Cruz,33,jbarrios,,Asociado,1,jcruz@emba.com.bo
+302,jtarradelles@emba.com.bo,True,Juan Pablo Tarradelles,85,jtarrade,,Asociado,1,jtarradelles@emba.com.bo
+302,kgutierrez@emba.com.bo,True,Katherine Gutierrez,61,kgutierr,,Analista,1,kgutierrez@emba.com.bo
+302,lrivas@emba.com.bo,True,Laura Rivas,110,lrivas,,Asociado,1,lrivas@emba.com.bo
+302,lrodriguez@emba.com.bo,True,Lilian Rodríguez,38,lrodrigu,,Asociado,1,lrodriguez@emba.com.bo
+302,lbonilla@emba.com.bo,True,Liliana Bonilla,37,lbonilla,,Asociado,1,lbonilla@emba.com.bo
+302,llazarte@emba.com.bo,True,Lucia Lazarte,91,llazarte,,Paralegal,1,llazarte@emba.com.bo
+302,lmorenog@emba.com.bo,True,Luis Moreno,8,lmoreno,,Socio,1,lmorenog@emba.com.bo
+302,lvalda@emba.com.bo,True,Luis Valda,88,lvalda,,Director,1,lvalda@emba.com.bo
+302,luz@timemanagerweb.com,True,Luz Sánchez,76,AMTM1,,,4,luz@timemanagerweb.com
+302,mcondori@emba.com.bo,True,Magaly Condori,39,mcondori,,Asociado,1,mcondori@emba.com.bo
+302,mdavila@emba.com.bo,True,Marcelo Dávila,67,mdavila,,,0,mdavila@emba.com.bo
+302,maltamirano@emba.com.bo,True,Marco Altamirano,108,maltamir,,Analista,1,maltamirano@emba.com.bo
+302,msuarez@emba.com.bo,True,Marco Suarez,58,msuarez,,Asociado,1,msuarez@emba.com.bo
+302,mvidez@emba.com.bo,True,Maria Eugenia Videz,64,mvidez,,Analista,1,mvidez@emba.com.bo
+302,fcuellar@emba.com.bo,True,María Fernanda Cuellar Rambalde,115,fcuellar,,Paralegal,1,fcuellar@emba.com.bo
+302,mcuellar@emba.com.bo,True,María Fernanda Cuellar Salvatierra,116,mcuellar,,Paralegal,1,mcuellar@emba.com.bo
+302,tcarrasco@emba.com.bo,True,María Teresa Carrasco,50,tcarrasc,,Asociado,1,tcarrasco@emba.com.bo
+302,maguirre@emba.com.bo,True,Mauricio Aguirre,102,maguirre,,Asociado Senior,1,maguirre@emba.com.bo
+302,mquisbert@emba.com.bo,True,Melvin Quisbert,53,mquisber,,Asociado,1,mquisbert@emba.com.bo
+302,mquezada@emba.com.bo,True,Miguel Quezada,40,mquezada,,Asociado,1,mquezada@emba.com.bo
+302,mcalatayud@emba.com.bo,True,Mikael Calatayud,65,mcalatay,,Analista,1,mcalatayud@emba.com.bo
+302,mrodriguez@emba.com.bo,True,Milandia Rodiguez,71,mrodrigu,,,0,mrodriguez@emba.com.bo
+302,mblanco@emba.com.bo,True,Moisés Blanco,21,mblanco,,Asociado Senior,1,mblanco@emba.com.bo
+302,nezegarra@emba.com.bo,True,Natalio Zegarra,15,nzegarra,,Director,1,nezegarra@emba.com.bo
+302,outsourcing@emba.com.bo,True,Nayeli Villca,117,nvillca,,Analista,1,outsourcing@emba.com.bo
+302,nsanjines@emba.com.bo,True,Noelia Sanjinés,41,nsanjine,,Asociado Senior,1,nsanjines@emba.com.bo
+302,pminaya@emba.com.bo,True,Pamela Minaya,42,pminaya,,Asociado,1,pminaya@emba.com.bo
+302,pmunoz@emba.com.bo,True,Pamela Muñoz,43,pmunoz,,Asociado Senior,1,pmunoz@emba.com.bo
+302,paramayo@emba.com.bo,True,Paul Aramayo,9,paramayo,,Socio,1,paramayo@emba.com.bo
+302,rmondacca@emba.com.bo,True,Rafaela Mondacca,45,rmondacc,,Asociado,1,rmondacca@emba.com.bo
+302,recursoshumanos@emba.com.bo,True,Recursos Humanos,114,rrhh,,,0,recursoshumanos@emba.com.bo
+302,rclaure@emba.com.bo,True,René Claure,10,rclaure,,Socio,1,rclaure@emba.com.bo
+302,rcuellar@emba.com.bo,True,René Cuellar,11,rcuellar,,Socio,1,rcuellar@emba.com.bo
+302,rsoliz@emba.com.bo,True,Rosalía Soliz,46,rsoliz,,Asociado,1,rsoliz@emba.com.bo
+302,rcanaza@emba.com.bo,True,Ruth Canaza,44,rcanaza,,Asociado,1,rcanaza@emba.com.bo
+302,sadriazola@emba.com.bo,True,Santiago Adriazola,47,sadriazo,,Asociado,1,sadriazola@emba.com.bo
+302,saguilera@emba.com.bo,True,Sebastian Aguilera,48,saguiler,,Asociado,1,saguilera@emba.com.bo
+302,walter@timemanagerweb.com,True,Soporte Nivel II,3,SN2,,,4,walter@timemanagerweb.com
+302,wdoria@timemanagerweb.com,True,Soporte TM Nivel I,73,STM1,,,4,wdoria@timemanagerweb.com
+302,tm.comunicacion@emba.com.bo,True,Soporte_TM,89,STM,,Asociado Senior,1,tm.comunicacion@emba.com.bo
+302,tmercado@emba.com.bo,True,Teddy Mercado,12,tmercado,,Socio,1,tmercado@emba.com.bo
+302,,True,TM Master,2,TM,,,4,tmmaster
+302,vflores@emba.com.bo,True,Valeria Flores,62,vflores,,Analista,1,vflores@emba.com.bo
+302,vroca@emba.com.bo,True,Valeria Roca,87,vroca,,Asociado,1,vroca@emba.com.bo

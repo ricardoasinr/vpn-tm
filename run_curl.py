@@ -64,14 +64,39 @@ def parse_curl_command(curl_command: str) -> Optional[Tuple[str, Dict[str, str],
             headers[key] = value
         
         # Extraer data (query GraphQL)
+        # Buscar --data seguido de comillas simples o dobles
         data_match = re.search(r"--data\s+['\"](.+)['\"]", curl_command, re.DOTALL)
         if not data_match:
             return None
         
         data_str = data_match.group(1)
-        # Reemplazar \n con newlines reales
-        data_str = data_str.replace('\\n', '\n')
-        data_dict = json.loads(data_str)
+        
+        # Intentar parsear el JSON directamente
+        # El JSON puede tener \\n (backslash literal + n) que JSON maneja correctamente
+        try:
+            data_dict = json.loads(data_str)
+        except json.JSONDecodeError as e:
+            # Si falla, puede ser por caracteres de control inválidos
+            # Intentar limpiar y parsear de nuevo
+            try:
+                # Reemplazar escapes literales \\n, \\t, \\r con sus equivalentes
+                # pero mantenerlos como escapes válidos para JSON
+                import re as regex_module
+                # Reemplazar \ seguido de n, t, o r con el carácter de escape correspondiente
+                # Esto convierte '\\n' (dos chars) a '\n' (un char newline)
+                # que JSON interpretará correctamente dentro de un string
+                cleaned = regex_module.sub(r'\\([ntr])', lambda m: {'n': '\n', 't': '\t', 'r': '\r'}[m.group(1)], data_str)
+                data_dict = json.loads(cleaned)
+            except json.JSONDecodeError as e2:
+                # Si aún falla, mostrar error detallado
+                print(f"Error al parsear JSON: {e2}")
+                if hasattr(e2, 'pos') and e2.pos:
+                    print(f"Posición del error: {e2.pos}")
+                    if e2.pos < len(data_str):
+                        start = max(0, e2.pos - 50)
+                        end = min(len(data_str), e2.pos + 50)
+                        print(f"Fragmento del JSON: {repr(data_str[start:end])}")
+                raise
         
         return url, headers, data_dict
         
