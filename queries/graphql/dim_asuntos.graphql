@@ -1,0 +1,81 @@
+query BusinessMeta($page: Int, $limit: Int, $searchTerm: String, $customers: [Int], $enabled: [Int], $orderBy: String, $orderDesc: Boolean, $enterpriseGroup: [Int], $practiceAreas: [Int], $billingModes: [Int], $billingGroups: [Int], $contactCounterParty: [Int], $status: [String], $billable: Boolean, $skipNoMilestoneBusiness: Boolean, $startCreationAt: DateTime, $endCreationAt: DateTime, $bpmStatus: [String], $expiration: String, $board: Int, $assigned: Boolean, $assignedUser: [Int], $assignedRole: [Int], $currency: Int, $billableItemStatus: [String], $hasTimes: Boolean, $dateFrom: DateTime, $dateTo: DateTime) {
+  BusinessMeta(page: $page, limit: $limit, searchTerm: $searchTerm, customers: $customers, enabled: $enabled, orderBy: $orderBy, orderDesc: $orderDesc, enterpriseGroup: $enterpriseGroup, practiceAreas: $practiceAreas, billingModes: $billingModes, billingGroups: $billingGroups, contactCounterParty: $contactCounterParty, status: $status, billable: $billable, skipNoMilestoneBusiness: $skipNoMilestoneBusiness, startCreationAt: $startCreationAt, endCreationAt: $endCreationAt, bpmStatus: $bpmStatus, expiration: $expiration, board: $board, assigned: $assigned, assignedUser: $assignedUser, assignedRole: $assignedRole, currency: $currency, billableItemStatus: $billableItemStatus, hasTimes: $hasTimes, dateFrom: $dateFrom, dateTo: $dateTo) {
+    meta {
+      total
+      page
+      pages
+      limit
+      hasPreviousPage
+      hasNextPage
+      previous
+      next
+    }
+    rows {
+      id
+      displayName
+      isBillable
+      businessDescription {
+        id
+        description
+      }
+      customer {
+        id
+        name
+        trade_name
+        displayName
+        customer_classification {
+          id
+          name
+        }
+      }
+      practiceArea {
+        id
+        name
+      }
+      billingMode {
+        id
+        description
+      }
+      milestones {
+        id
+        name
+      }
+      secondaryExternalCode
+      hourLimit
+      limitAlert
+      currency {
+        id
+        shortName
+      }
+      billingCurrency {
+        id
+        shortName
+      }
+      status
+      statusMarking
+      bpmStatus {
+        id
+        label
+      }
+      bpmResponsible {
+        id
+        fullName
+      }
+      finishedDate
+      estimatedFinishDate
+      riskStatus
+      created_at
+      fix_rate_value
+      expedient
+      primary_external_code
+      monthlyFixRateGroup {
+        id
+        name
+        hour_limit
+        rate
+      }
+      notes
+      milestonesTotal
+    }
+  }
+}

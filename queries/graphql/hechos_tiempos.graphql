@@ -1,0 +1,113 @@
+query TimesByFiltersPaged($users: [Int], $customers: [Int], $businesses: [Int], $status: [String], $billiable: Boolean, $date_from: DateTime, $date_to: DateTime, $order_by: String, $order_dir: Boolean, $page: Int, $max_per_page: Int, $access: IndicatorAccess, $contacts: [Int]) {
+  TimesByFiltersPaged(users: $users, customers: $customers, businesses: $businesses, status: $status, billiable: $billiable, date_from: $date_from, date_to: $date_to, order_by: $order_by, order_dir: $order_dir, page: $page, max_per_page: $max_per_page, access: $access, contacts: $contacts) {
+    total
+    num_pages
+    has_previous_page
+    has_next_page
+    current_page
+    previous_page
+    next_page
+    times {
+      id
+      date
+      user {
+        id
+        shortName
+        fullName
+      }
+      business {
+        id
+        displayName
+        currency {
+          id
+          shortName
+        }
+        businessDescription {
+          description
+        }
+        customer {
+          id
+          name
+          trade_name
+          color
+          displayName
+        }
+        procedureRate {
+          id
+          name
+          year
+          status
+        }
+      }
+      procedureTransaction {
+        id
+        status
+        procedure_rate_detail {
+          id
+          procedureRate {
+            id
+            name
+            year
+            status
+          }
+          name
+          description
+          rate
+          currency {
+            id
+            shortName
+            exchangeRate
+            status
+          }
+          procedureExpenses
+          expensesCurrency {
+            id
+          }
+          procedureExpensesBilling
+          expensesBillingCurrency {
+            id
+            shortName
+            exchangeRate
+            status
+          }
+        }
+      }
+      minutes
+      startTime
+      endTime
+      billableMinutes
+      detail
+      office_id
+      status {
+        id
+        name
+      }
+      statusMarking
+      workflow_status {
+        id
+        name
+      }
+      task {
+        id
+      }
+      activity {
+        id
+        spanishDescription
+      }
+      practice_area {
+        id
+        name
+      }
+      billable
+      milestone {
+        id
+        name
+      }
+      shared
+      customer_classification {
+        id
+        name
+      }
+    }
+  }
+}

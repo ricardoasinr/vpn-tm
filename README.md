@@ -7,8 +7,8 @@ Sistema de extracción de datos para el datawarehouse de Moreno Baldivieso. Este
 Este proyecto proporciona herramientas para extraer datos de diferentes fuentes y prepararlos para su uso en un datawarehouse. Incluye tres métodos principales de extracción:
 
 1. **Extracción desde Base de Datos**: Ejecuta consultas SQL directamente en una base de datos Aurora MySQL
-2. **Extracción desde API**: Realiza peticiones GraphQL a una API REST y procesa las respuestas
-3. **Extracción mediante CURL**: Ejecuta comandos curl almacenados en archivos de texto con soporte para paginación automática
+2. **Extracción desde API (Automática)**: Realiza peticiones GraphQL a una API REST y procesa las respuestas automáticamente
+3. **Extracción desde API (Interactiva)**: Ejecuta comandos curl almacenados en archivos con soporte para paginación automática mediante menú interactivo
 
 ## 🚀 Instalación
 
@@ -31,100 +31,190 @@ Las dependencias incluyen:
 - `pymysql>=1.0.0` - Para conexión a MySQL
 - `requests>=2.31.0` - Para peticiones HTTP
 
+3. (Opcional) Configurar variables de entorno:
+   - Copia `.env.example` a `.env` y configura tus credenciales
+   - O modifica directamente `config/database.py` y `config/api.py`
+
 ## 📁 Estructura del Proyecto
 
 ```
-Datawarehouse/
-├── api_requests.py          # Script para extraer datos desde la API GraphQL
-├── bd.py                    # Script para extraer datos desde la base de datos
-├── run_curl.py              # Script interactivo para ejecutar comandos curl
-├── requirements.txt         # Dependencias de Python
-├── curls/                   # Archivos con comandos curl
-│   ├── Dim_Asuntos.txt
-│   ├── Dim_Usuarios.txt
-│   ├── Hechos_Tiempos.txt
-│   └── login.txt
-├── queries/                 # Consultas SQL
-│   ├── Dim_Asuntos.sql
-│   ├── Dim_Usuario.sql
-│   ├── Hechos_Capacidad.sql
-│   └── Hechos_Tiempos.sql
-├── results_api/             # Resultados de extracciones desde API
-│   ├── Dim_Asuntos.csv
-│   └── Dim_Usuario.csv
-├── results_bd/              # Resultados de extracciones desde BD
-│   ├── Dim_Asuntos.csv
-│   ├── Dim_Usuario.csv
-│   ├── Hechos_Capacidad.csv
-│   └── Hechos_Tiempos.csv
-└── extras/                  # Archivos adicionales
-    ├── emba.postman_collection.json
-    └── mb.ovpn
+datawarehouse-mb/
+├── src/
+│   ├── extractors/              # Extractores principales
+│   │   ├── database_extractor.py      # Extrae desde MySQL
+│   │   ├── api_extractor.py           # Extracción automática de API GraphQL
+│   │   └── interactive_api_extractor.py  # Extracción interactiva de API GraphQL
+│   ├── api/                     # Módulos de API
+│   │   ├── auth.py              # Autenticación
+│   │   ├── client.py            # Cliente GraphQL
+│   │   └── pagination.py        # Lógica de paginación
+│   ├── database/                # Módulos de base de datos
+│   │   └── connection.py        # Conexión a MySQL
+│   └── utils/                   # Utilidades
+│       ├── csv_writer.py         # Escritura de CSV
+│       ├── json_flattener.py    # Aplanar JSON anidado
+│       ├── curl_parser.py       # Parsear comandos curl
+│       └── graphql_parser.py    # Parsear respuestas GraphQL
+├── queries/
+│   ├── sql/                     # Consultas SQL
+│   │   ├── dimensions/
+│   │   │   ├── dim_asuntos.sql
+│   │   │   └── dim_usuarios.sql
+│   │   └── facts/
+│   │       ├── hechos_tiempos.sql
+│   │       └── hechos_capacidad.sql
+│   └── graphql/                 # Queries GraphQL
+│       ├── dim_asuntos.graphql
+│       ├── dim_asuntos.variables.json
+│       ├── dim_usuarios.graphql
+│       ├── dim_usuarios.variables.json
+│       ├── hechos_tiempos.graphql
+│       └── hechos_tiempos.variables.json
+├── config/                      # Configuración
+│   ├── database.py              # Config BD
+│   └── api.py                   # Config API
+├── output/                      # Resultados
+│   ├── database/                # Resultados de extracciones desde BD
+│   └── api/                     # Resultados de extracciones desde API
+├── resources/                   # Recursos externos
+│   ├── postman/
+│   │   └── emba.postman_collection.json
+│   └── vpn/
+│       └── mb.ovpn
+├── scripts/                     # Scripts de ejecución
+│   ├── extract_all.py           # Ejecuta todos los extractores
+│   ├── extract_dim_asuntos.py   # Extrae solo Dim_Asuntos (API)
+│   ├── extract_dim_usuarios.py  # Extrae solo Dim_Usuarios (API)
+│   └── extract_hechos_tiempos.py # Extrae solo Hechos_Tiempos (API)
+├── requirements.txt
+└── README.md
 ```
 
 ## 🔧 Uso
 
-### 1. Extracción desde Base de Datos (`bd.py`)
+### Scripts de Ejecución Rápida
 
-Ejecuta todas las consultas SQL en la carpeta `queries/` y guarda los resultados en CSV.
+El proyecto incluye scripts convenientes en la carpeta `scripts/` para ejecutar extracciones de forma rápida:
+
+#### Ejecutar Todos los Extractores
+
+Ejecuta todas las extracciones (base de datos y API) en secuencia:
 
 ```bash
-python bd.py
+python scripts/extract_all.py
+```
+
+#### Ejecutar Extractores Individuales de API
+
+Puedes ejecutar cada query GraphQL de forma individual:
+
+**Dim_Asuntos:**
+```bash
+python scripts/extract_dim_asuntos.py
+```
+
+**Dim_Usuarios:**
+```bash
+python scripts/extract_dim_usuarios.py
+```
+
+**Hechos_Tiempos:**
+```bash
+python scripts/extract_hechos_tiempos.py
+```
+
+**Características de los scripts individuales:**
+- Autenticación automática
+- Paginación automática
+- Guarda resultados en `output/api/`
+- Mensajes de progreso claros
+- Manejo de errores robusto
+
+### 1. Extracción desde Base de Datos
+
+Ejecuta todas las consultas SQL en `queries/sql/` y guarda los resultados en CSV.
+
+```bash
+python -m src.extractors.database_extractor
+```
+
+O desde la raíz del proyecto:
+
+```bash
+python src/extractors/database_extractor.py
 ```
 
 **Características:**
-- Conecta directamente a la base de datos Aurora MySQL (sin VPN)
-- Ejecuta todos los archivos `.sql` en la carpeta `queries/`
-- Guarda los resultados en `results_bd/` (o `results/` según configuración)
+- Conecta directamente a la base de datos Aurora MySQL
+- Ejecuta todos los archivos `.sql` en `queries/sql/` (recursivo)
+- Guarda los resultados en `output/database/`
 - Soporta múltiples consultas en batch
 
 **Configuración:**
-Las credenciales de la base de datos están configuradas en `bd.py`. Puedes usar variables de entorno:
+Las credenciales están en `config/database.py`. Puedes usar variables de entorno:
 - `DB_HOST` - Host de la base de datos
 - `DB_PORT` - Puerto (default: 3306)
 - `DB_NAME` - Nombre de la base de datos
 - `DB_USER` - Usuario
 - `DB_PASSWORD` - Contraseña
 
-### 2. Extracción desde API (`api_requests.py`)
+### 2. Extracción desde API (Automática)
 
-Realiza peticiones GraphQL a la API y guarda los resultados en CSV.
+Realiza peticiones GraphQL a la API y guarda los resultados en CSV automáticamente. Ejecuta **todos** los queries GraphQL encontrados en `queries/graphql/`.
 
 ```bash
-python api_requests.py
+python -m src.extractors.api_extractor
+```
+
+O desde la raíz del proyecto:
+
+```bash
+python src/extractors/api_extractor.py
 ```
 
 **Características:**
 - Autenticación automática mediante login
 - Soporte para paginación automática
-- Extrae datos de:
+- Extrae datos de todos los queries GraphQL en `queries/graphql/`:
   - `Dim_Asuntos` (BusinessMeta)
-  - `Dim_Usuario` (Users)
+  - `Dim_Usuarios` (Users)
   - `Hechos_Tiempos` (TimesByFiltersPaged)
-- Guarda resultados en `results_api/`
+- Guarda resultados en `output/api/`
 - Convierte respuestas JSON anidadas a CSV plano
 
-**Nota:** Las credenciales de login están hardcodeadas en el script. Considera usar variables de entorno para mayor seguridad.
+**Configuración:**
+Las credenciales están en `config/api.py`. Puedes usar variables de entorno:
+- `API_BASE_URL` - URL base de la API
+- `API_USERNAME` - Usuario para login
+- `API_PASSWORD` - Contraseña para login
+- `API_TENANT_NAME` - Nombre del tenant
 
-### 3. Extracción mediante CURL (`run_curl.py`)
+### 3. Extracción desde API (Interactiva)
 
 Script interactivo que permite ejecutar comandos curl almacenados en archivos.
 
 ```bash
-python run_curl.py
+python -m src.extractors.interactive_api_extractor
+```
+
+O desde la raíz del proyecto:
+
+```bash
+python src/extractors/interactive_api_extractor.py
 ```
 
 **Características:**
-- Menú interactivo para seleccionar qué curl ejecutar
+- Menú interactivo para seleccionar qué query ejecutar
+- Lee queries GraphQL desde archivos `.graphql` y variables desde `.variables.json`
 - Soporte para paginación automática en queries GraphQL
-- Guarda resultados en formato JSON y CSV en `results_curl/`
-- Permite ejecutar múltiples curls en la misma sesión
+- Guarda resultados en formato JSON y CSV en `output/api/`
+- Permite ejecutar múltiples queries en la misma sesión
 
 ## 📊 Datos Extraídos
 
 ### Dimensiones
 - **Dim_Asuntos**: Información de asuntos/negocios (BusinessMeta)
-- **Dim_Usuario**: Información de usuarios del sistema
+- **Dim_Usuarios**: Información de usuarios del sistema
 
 ### Hechos
 - **Hechos_Tiempos**: Registros de tiempos trabajados
@@ -132,17 +222,21 @@ python run_curl.py
 
 ## 🔐 Seguridad
 
-⚠️ **Importante**: Este proyecto contiene credenciales hardcodeadas. Para uso en producción:
+⚠️ **Importante**: Este proyecto contiene credenciales hardcodeadas por defecto. Para uso en producción:
 
-1. Usa variables de entorno para credenciales
+1. Usa variables de entorno para credenciales (ver `config/database.py` y `config/api.py`)
 2. No subas archivos con credenciales a repositorios públicos
 3. Considera usar un gestor de secretos (AWS Secrets Manager, etc.)
+4. Crea un archivo `.env` (no incluido en el repo) con tus credenciales
 
 ## 🛠️ Funcionalidades Adicionales
 
 ### Listar tablas de la base de datos
 
-Puedes modificar `bd.py` para usar la función `list_database_tables()` que lista todas las tablas disponibles en la base de datos.
+```python
+from src.database.connection import list_database_tables
+list_database_tables()
+```
 
 ## 📝 Notas
 
@@ -150,15 +244,28 @@ Puedes modificar `bd.py` para usar la función `list_database_tables()` que list
 - Los datos anidados de JSON se aplanan automáticamente al convertir a CSV
 - Los archivos CSV se guardan con codificación UTF-8
 - Los scripts crean automáticamente las carpetas de resultados si no existen
+- Los nombres de archivos usan `snake_case` para consistencia
+- Los scripts en `scripts/` son ejecutables directamente y proporcionan una forma conveniente de ejecutar extracciones específicas
+- Usa `extract_all.py` para ejecutar todas las extracciones en una sola ejecución
 
 ## 🤝 Contribuciones
 
 Para agregar nuevas extracciones:
 
-1. **Para consultas SQL**: Agrega un archivo `.sql` en `queries/`
-2. **Para queries GraphQL**: Modifica `api_requests.py` o agrega un archivo `.txt` en `curls/`
+1. **Para consultas SQL**: Agrega un archivo `.sql` en `queries/sql/dimensions/` o `queries/sql/facts/`
+   - El extractor de base de datos los ejecutará automáticamente
+
+2. **Para queries GraphQL automáticos**: 
+   - Crea un archivo `.graphql` con el query en `queries/graphql/`
+   - Crea un archivo `.variables.json` con las variables (opcional, puede estar vacío `{}`)
+   - Ejemplo: `dim_nuevo.graphql` y `dim_nuevo.variables.json`
+   - El extractor automático (`api_extractor.py`) los ejecutará automáticamente
+   - Opcionalmente, crea un script individual en `scripts/extract_nuevo.py` siguiendo el patrón de los existentes
+
+3. **Para queries GraphQL interactivos**: 
+   - Los mismos archivos `.graphql` y `.variables.json` funcionan con el extractor interactivo
+   - El extractor interactivo mostrará todos los queries disponibles en un menú
 
 ## 📄 Licencia
 
 Este proyecto es de uso interno de Moreno Baldivieso.
-

@@ -1,0 +1,15 @@
+{
+  "access": "ALL",
+  "customers": [],
+  "businesses": [],
+  "contacts": [],
+  "status": null,
+  "billiable": null,
+  "date_from": null,
+  "date_to": null,
+  "max_per_page": 1000,
+  "page": 1,
+  "order_by": "date",
+  "order_dir": true,
+  "users": []
+}

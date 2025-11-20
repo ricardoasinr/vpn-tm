@@ -1,0 +1,27 @@
+query Users($limit: Int, $page: Int, $searchTerm: String, $userTypes: [Int], $practiceAreas: [Int], $hideSuperAdmin: Boolean, $start_date: DateTime, $end_date: DateTime, $created: Boolean, $roles: [Int], $category: Int, $showDisabled: Boolean, $order_by: String, $order_dir: Boolean, $onlyDisabled: Boolean) {
+  Users(limit: $limit, page: $page, searchTerm: $searchTerm, userTypes: $userTypes, practiceAreas: $practiceAreas, hideSuperAdmin: $hideSuperAdmin, start_date: $start_date, end_date: $end_date, created: $created, roles: $roles, category: $category, showDisabled: $showDisabled, order_by: $order_by, order_dir: $order_dir, onlyDisabled: $onlyDisabled) {
+    meta {
+      total
+      page
+      pages
+      limit
+      hasPreviousPage
+      hasNextPage
+      previous
+      next
+    }
+    users {
+      id
+      username
+      fullName
+      shortName
+      userType
+      email
+      userCategory {
+        name
+      }
+      daysAllow
+      enabled
+    }
+  }
+}
