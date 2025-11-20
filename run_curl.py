@@ -39,7 +39,7 @@ def read_curl_file(file_path):
         return None
 
 
-def parse_curl_command(curl_command: str) -> Optional[Tuple[str, Dict[str, Any], Dict[str, str]]]:
+def parse_curl_command(curl_command: str) -> Optional[Tuple[str, Dict[str, str], Dict[str, Any]]]:
     """
     Parsea un comando curl y extrae URL, headers y data (query GraphQL).
     
