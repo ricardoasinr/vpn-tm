@@ -1,6 +1,6 @@
 # setup_cron_windows.ps1
 # Script helper para configurar el Task Scheduler que ejecuta el reporte diario
-# a la medianoche (Windows Server)
+# a las 23:00 (Windows Server)
 
 # Verificar que se ejecute como administrador
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -42,8 +42,8 @@ if (-not (Test-Path $LogsDir)) {
 # Nombre de la tarea programada
 $TaskName = "Datawarehouse_Daily_Report"
 
-# Hora de ejecución: medianoche (00:00)
-$StartTime = "00:00"
+# Hora de ejecución: 23:00
+$StartTime = "23:00"
 
 # Para ejecutar cada 5 minutos, descomenta la siguiente línea y comenta la línea anterior:
 # $StartTime = (Get-Date).AddMinutes(5).ToString("HH:mm")
@@ -52,7 +52,7 @@ $StartTime = "00:00"
 $LogFile = Join-Path $LogsDir "daily_report.log"
 $Action = New-ScheduledTaskAction -Execute $PythonPath -Argument "`"$DailyReportScript`"" -WorkingDirectory $ProjectRoot
 
-# Crear trigger: diariamente a medianoche
+# Crear trigger: diariamente a las 23:00
 $Trigger = New-ScheduledTaskTrigger -Daily -At $StartTime
 
 # Para ejecutar cada 5 minutos, descomenta las siguientes líneas y comenta la línea anterior:
@@ -71,7 +71,7 @@ Write-Host "📁 Directorio del proyecto: $ProjectRoot"
 Write-Host "🐍 Python: $PythonPath"
 Write-Host "📄 Script: $DailyReportScript"
 Write-Host ""
-Write-Host "⏰ La tarea se ejecutará diariamente a las $StartTime (medianoche)"
+Write-Host "⏰ La tarea se ejecutará diariamente a las $StartTime"
 Write-Host "📝 Los logs se guardarán en: $LogFile"
 Write-Host ""
 Write-Host "════════════════════════════════════════════════════════════"

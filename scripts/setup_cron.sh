@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Script helper para configurar el cron job que ejecuta el reporte diario
-# a la medianoche
+# a las 23:00
 #
 
 # Obtener el directorio del script
@@ -27,8 +27,8 @@ if [ ! -f "$DAILY_REPORT_SCRIPT" ]; then
 fi
 
 # Crear el comando de cron
-# 0 0 * * * = cada día a medianoche (00:00)
-CRON_CMD="0 0 * * * cd $PROJECT_ROOT && $PYTHON_PATH $DAILY_REPORT_SCRIPT >> $PROJECT_ROOT/logs/daily_report.log 2>&1"
+# 0 23 * * * = cada día a las 23:00
+CRON_CMD="0 23 * * * cd $PROJECT_ROOT && $PYTHON_PATH $DAILY_REPORT_SCRIPT >> $PROJECT_ROOT/logs/daily_report.log 2>&1"
 
 # Crear directorio de logs si no existe
 mkdir -p "$PROJECT_ROOT/logs"
@@ -41,7 +41,7 @@ echo "📁 Directorio del proyecto: $PROJECT_ROOT"
 echo "🐍 Python: $PYTHON_PATH"
 echo "📄 Script: $DAILY_REPORT_SCRIPT"
 echo ""
-echo "⏰ El cron job se ejecutará diariamente a las 00:00 (medianoche)"
+echo "⏰ El cron job se ejecutará diariamente a las 23:00"
 echo "📝 Los logs se guardarán en: $PROJECT_ROOT/logs/daily_report.log"
 echo ""
 echo "════════════════════════════════════════════════════════════"
