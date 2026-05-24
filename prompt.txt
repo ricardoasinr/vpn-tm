@@ -1,0 +1,3 @@
+Lee todo los archivos, creame una documentación detallada de la arquitectura, en una carpeta docs, actualiza el readme de instalación y todos los modos que hay en los scripts.
+
+y en la carpeta docs igual documenta todo lo que se tenga
